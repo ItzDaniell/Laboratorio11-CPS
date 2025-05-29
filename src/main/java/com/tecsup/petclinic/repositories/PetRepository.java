@@ -28,5 +28,4 @@ public interface PetRepository
 
 	@Override
 	List<Pet> findAll();
-
 }

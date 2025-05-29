@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity(name = "visits")
 @Data
-public class Visits {
+public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,17 +22,17 @@ public class Visits {
 
     private String description;
 
-    public Visits() {
+    public Visit() {
     }
 
-    public Visits(int id, int petId, Date visitDate, String description) {
+    public Visit(int id, int petId, Date visitDate, String description) {
         this.id = id;
         this.petId = petId;
         this.visitDate = visitDate;
         this.description = description;
     }
 
-    public Visits(int petId, Date visitDate, String description) {
+    public Visit(int petId, Date visitDate, String description) {
         this.petId = petId;
         this.visitDate = visitDate;
         this.description = description;
