@@ -20,22 +20,43 @@ public class VisitServiceImpl implements VisitService {
 
     public VisitServiceImpl(VisitRepository visitRepository) { this.visitRepository = visitRepository; }
 
+    /**
+     *
+     * @param visit
+     * @return
+     */
     @Override
     public Visit create(Visit visit) {
         return visitRepository.save(visit);
     }
 
+    /**
+     *
+     * @param visit
+     * @return
+     */
     @Override
     public Visit update(Visit visit) {
         return visitRepository.save(visit);
     }
 
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public void delete(Integer id) throws VisitNotFoundException {
         Visit visit = findById(id);
         visitRepository.delete(visit);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public Visit findById(Integer id) throws VisitNotFoundException {
         Optional<Visit> visit = visitRepository.findById(id);
@@ -45,6 +66,11 @@ public class VisitServiceImpl implements VisitService {
         return visit.get();
     }
 
+    /**
+     *
+     * @param date
+     * @return
+     */
     @Override
     public List<Visit> findByDate(Date date) throws VisitNotFoundException {
 
