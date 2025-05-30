@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class VisitSearchTest {
     @Test
     public void testFindByDate() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = sdf.parse("2010-03-04");
+        LocalDate date = LocalDate.parse("2010-03-04");
 
         List<Visit> visits = visitService.findByDate(date);
         Assertions.assertFalse(visits.isEmpty(), "Debe encontrar visitas en la fecha " + date);

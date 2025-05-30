@@ -1,13 +1,12 @@
 package com.tecsup.petclinic.services;
 
-import com.tecsup.petclinic.entities.Pet;
 import com.tecsup.petclinic.entities.Visit;
-import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.exception.VisitNotFoundException;
 import com.tecsup.petclinic.repositories.VisitRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -72,7 +71,7 @@ public class VisitServiceImpl implements VisitService {
      * @return
      */
     @Override
-    public List<Visit> findByDate(Date date) throws VisitNotFoundException {
+    public List<Visit> findByDate(LocalDate date) throws VisitNotFoundException {
 
         List<Visit> visits = visitRepository.findByDate(date);
 
