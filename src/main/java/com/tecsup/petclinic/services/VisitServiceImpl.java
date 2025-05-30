@@ -6,8 +6,7 @@ import com.tecsup.petclinic.repositories.VisitRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDate; // Asegúrate de tener esta importación
 import java.util.List;
 import java.util.Optional;
 
@@ -15,68 +14,45 @@ import java.util.Optional;
 @Slf4j
 public class VisitServiceImpl implements VisitService {
 
-    VisitRepository visitRepository;
+    private final VisitRepository visitRepository;
 
-    public VisitServiceImpl(VisitRepository visitRepository) { this.visitRepository = visitRepository; }
+    public VisitServiceImpl(VisitRepository visitRepository) {
+        this.visitRepository = visitRepository;
+    }
 
-    /**
-     *
-     * @param visit
-     * @return
-     */
     @Override
     public Visit create(Visit visit) {
         return visitRepository.save(visit);
     }
 
-    /**
-     *
-     * @param visit
-     * @return
-     */
     @Override
     public Visit update(Visit visit) {
         return visitRepository.save(visit);
     }
 
-
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public void delete(Integer id) throws VisitNotFoundException {
         Visit visit = findById(id);
         visitRepository.delete(visit);
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public Visit findById(Integer id) throws VisitNotFoundException {
         Optional<Visit> visit = visitRepository.findById(id);
-        if ( !visit.isPresent())
+        if (visit.isEmpty()) {
             throw new VisitNotFoundException("Record not found...!");
-
+        }
         return visit.get();
     }
 
-    /**
-     *
-     * @param date
-     * @return
-     */
     @Override
+
     public List<Visit> findByDate(LocalDate date) throws VisitNotFoundException {
-
         List<Visit> visits = visitRepository.findByDate(date);
-
-        visits.stream().forEach(visit -> log.info("" + visit));
-
+        if (visits.isEmpty()) {
+            throw new VisitNotFoundException("Visits not found for date: " + date);
+        }
+        visits.forEach(visit -> log.info("{}", visit));
         return visits;
     }
 }
