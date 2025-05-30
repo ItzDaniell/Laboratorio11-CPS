@@ -4,6 +4,7 @@ import com.tecsup.petclinic.entities.Visit;
 import com.tecsup.petclinic.exception.VisitNotFoundException;
 import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
 
 /**
  *
@@ -44,5 +45,5 @@ public interface VisitService {
      * @param date
      * @return
      */
-    List<Visit> findByDate(Date date) throws VisitNotFoundException;
+    List<Visit> findByDate(LocalDate date) throws VisitNotFoundException;
 }
